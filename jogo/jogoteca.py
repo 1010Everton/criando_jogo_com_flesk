@@ -12,9 +12,9 @@ lista = [jogos1, jogos2]
 @app.route('/inicio')
 def index():
 
-    return render_template('index.html', titulo='jogos', jogos=lista)
+    return render_template('lista.html', titulo='jogos', jogos=lista)
 
-@app.route('/novo')
+@app.route('/')
 def novo():
     return render_template('novo.html',titulo='novo jogo')
 
@@ -26,5 +26,16 @@ def criar():
     jogo = Jogo(nome, categoria, console)
     lista.append(jogo)
     return redirect('/inicio')
+@app.route('/login')
+def login():
+    return ('login.html')
+@app.route('/autentica')
+def autentica():
+    if '123' == request.form ['senha']:
+        return ('/')
+    else:
+        return ('/login')
+
+
 
 app.run(debug=True)
